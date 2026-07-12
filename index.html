@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tarefas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="fundo-atmosfera" aria-hidden="true">
+      <div class="grade-fundo"></div>
+      <div class="orbe orbe-um"></div>
+      <div class="orbe orbe-dois"></div>
+      <div class="varredura"></div>
+    </div>
+
+    <main class="aplicacao">
+      <div class="canto canto-superior-esquerdo" aria-hidden="true"></div>
+      <div class="canto canto-superior-direito" aria-hidden="true"></div>
+      <div class="canto canto-inferior-esquerdo" aria-hidden="true"></div>
+      <div class="canto canto-inferior-direito" aria-hidden="true"></div>
+
+      <header class="cabecalho">
+        <div class="selo-sistema">
+          <span class="ponto-status" aria-hidden="true"></span>
+          <span>SISTEMA ATIVO</span>
+        </div>
+        <h1 class="titulo">Lista de Tarefas</h1>
+        <p class="subtitulo">Painel de execução · controle em tempo real</p>
+      </header>
+
+      <form id="formulario-tarefa" class="formulario-tarefa" autocomplete="off">
+        <label class="rotulo-visualmente-oculto" for="entrada-tarefa">
+          Nova tarefa
+        </label>
+        <div class="campo-entrada">
+          <span class="prefixo-entrada" aria-hidden="true">&gt;_</span>
+          <input
+            type="text"
+            id="entrada-tarefa"
+            class="entrada-tarefa"
+            placeholder="Nova missão..."
+            maxlength="120"
+          />
+        </div>
+        <button type="submit" class="botao-adicionar" aria-label="Adicionar tarefa">
+          <span>Adicionar</span>
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M8 1.5a.75.75 0 0 1 .75.75v5h5a.75.75 0 0 1 0 1.5h-5v5a.75.75 0 0 1-1.5 0v-5h-5a.75.75 0 0 1 0-1.5h5v-5A.75.75 0 0 1 8 1.5Z"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <nav class="filtros" aria-label="Filtros da lista">
+        <button
+          type="button"
+          class="botao-filtro ativo"
+          data-filtro="todas"
+          aria-pressed="true"
+        >
+          Todas
+        </button>
+        <button
+          type="button"
+          class="botao-filtro"
+          data-filtro="ativas"
+          aria-pressed="false"
+        >
+          Ativas
+        </button>
+        <button
+          type="button"
+          class="botao-filtro"
+          data-filtro="concluidas"
+          aria-pressed="false"
+        >
+          Concluídas
+        </button>
+      </nav>
+
+      <ul id="lista-tarefas" class="lista-tarefas" aria-live="polite"></ul>
+
+      <footer class="rodape-lista">
+        <span id="contador-pendentes" class="contador-pendentes">
+          0 itens pendentes
+        </span>
+        <button
+          type="button"
+          id="botao-limpar-historico"
+          class="botao-limpar-historico"
+        >
+          Limpar histórico
+        </button>
+      </footer>
+    </main>
+
+    <div
+      id="modal-confirmacao"
+      class="modal-confirmacao"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-modal"
+      aria-describedby="descricao-modal"
+      hidden
+    >
+      <div class="modal-fundo" data-acao-modal="cancelar"></div>
+      <div class="modal-caixa">
+        <div class="modal-canto modal-canto-superior-esquerdo" aria-hidden="true"></div>
+        <div class="modal-canto modal-canto-superior-direito" aria-hidden="true"></div>
+        <div class="modal-canto modal-canto-inferior-esquerdo" aria-hidden="true"></div>
+        <div class="modal-canto modal-canto-inferior-direito" aria-hidden="true"></div>
+
+        <p class="modal-selo">ALERTA DO SISTEMA</p>
+        <h2 id="titulo-modal" class="modal-titulo">Limpar histórico?</h2>
+        <p id="descricao-modal" class="modal-descricao">
+          Tem certeza de que deseja limpar todo o histórico de tarefas? Esta ação
+          não poderá ser desfeita.
+        </p>
+
+        <div class="modal-acoes">
+          <button
+            type="button"
+            id="botao-cancelar-limpeza"
+            class="botao-modal botao-modal-secundario"
+            data-acao-modal="cancelar"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            id="botao-confirmar-limpeza"
+            class="botao-modal botao-modal-perigo"
+            data-acao-modal="confirmar"
+          >
+            Limpar tudo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
